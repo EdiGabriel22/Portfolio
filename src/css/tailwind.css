@@ -1,0 +1,30 @@
+/* FILEPATH: /c:/Users/ediga/Desktop/portfolio/src/css/tailwind.css */
+/* BEGIN: abpxx6d04wxr */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: "Lexend", sans-serif;
+    color: white;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+    @apply w-1 h-3
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-white rounded-full
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-neutral-900 rounded-full
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+/* END: abpxx6d04wxr */
