@@ -1,6 +1,6 @@
 <template>
-	<div class="h-screen bg-neutral-950">
-		<NuxtPage class="bg-primary"/>
+	<div class="relative bg-neutral-950 ">
+		<NuxtPage class="md:h-screen bg-primary "/>
 		<Header />
 	</div>
 </template>

@@ -15,7 +15,5 @@
     "vue": "^3.4.10",
     "vue-router": "^4.2.5"
   },
-  "dependencies": {
-    "vue-dragscroll": "^4.0.5"
-  }
+  "dependencies": {}
 }

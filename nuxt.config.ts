@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 		configPath: "tailwind.config.js",
 		cssPath: "./src/css/tailwind.css",
 	},
+	
 	components: {
 		dirs: [
 			{
