@@ -1,7 +1,7 @@
 <template>
     <div class="items-center px-4 md:p-0 md:flex place-content-center">
         <div class="flex md:flex-row md:overflow-x-auto scroll-behavior-smooth" ref="scrollContainer"> 
-            <div class="flex flex-col gap-3 py-4 md:px-20 md:flex-row md:snap-start">
+            <div class="flex flex-col gap-6 py-4 md:px-20 md:flex-row md:snap-start">
                 <div class="flex w-full md:w-[711px] flex-col justify-between gap-6 p-4 bg-neutral-900 border border-gray-500 rounded-3xl">
                     <div class="flex">
                         <div class="w-12 h-12 mr-4 overflow-hidden bg-white rounded-full">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 
-                <div class="grid w-full md:w-[400px] grid-cols-2 gap-3">
+                <div class="grid w-full md:w-[400px] grid-cols-2 gap-6">
                     <a 
                         class="flex flex-col items-start justify-between row-span-2 gap-6 p-4 transition-colors border border-gray-500 bg-neutral-900 hover:bg-neutral-800/80 rounded-3xl"
                         href="https://www.linkedin.com/in/edi-gabriel/" 
@@ -87,6 +87,19 @@
                         
                         <span>edigabriel_</span>
                     </div>
+                </div>
+                
+                <div class="grid w-full md:w-[400px] grid-cols-2 gap-3">
+                    <a 
+                        class="flex flex-col items-start justify-between row-span-2 gap-6 p-4 transition-colors border border-gray-500 bg-neutral-900 hover:bg-neutral-800/80 rounded-3xl"
+                        href="https://www.linkedin.com/in/edi-gabriel/" 
+                        target="_blank" 
+                    >
+                        <font-awesome :icon="['fab', 'linkedin']" class="fa-xl"/>
+                        
+                        <span>Edi Gabriel</span>
+                    </a>
+                    
                 </div>
             </div>
         </div>
