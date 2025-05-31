@@ -15,7 +15,7 @@
 
 <script setup>
 const projects = [
-  { id: 1, image: 'https://via.placeholder.com/400x300', title: 'Viva Sorte', category: 'Product Design, Desenvolvimento' },
-  { id: 2, image: 'https://via.placeholder.com/400x300', title: 'Cartão da Gente', category: 'Product Design' }
+  { id: 1, image: 'https://placehold.co/600x400', title: 'Viva Sorte', category: 'Product Design, Desenvolvimento' },
+  { id: 2, image: 'https://placehold.co/600x400', title: 'Cartão da Gente', category: 'Product Design' }
 ]
 </script>

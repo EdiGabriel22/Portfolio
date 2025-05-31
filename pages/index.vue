@@ -3,5 +3,7 @@
         <Header/>
         <Hero/>
         <Projects/>
+        <About/>
+        <Footer/>
     </div>
 </template>
