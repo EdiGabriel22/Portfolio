@@ -10,20 +10,20 @@
 			</h1>
 			
 			<!-- Tech Stack Icons -->
-			<div class="flex flex-wrap gap-4 justify-center items-center mt-16 opacity-60 md:gap-8">
-				<div class="flex gap-2 items-center">
+			<div class="flex flex-wrap items-center justify-center gap-4 mt-16 opacity-60 md:gap-8">
+				<div class="flex items-center gap-2">
 					<span class="text-xs font-medium md:text-sm">Framer</span>
 				</div>
-				<div class="flex gap-2 items-center">
+				<div class="flex items-center gap-2">
 					<span class="text-xs font-medium md:text-sm">Tailwind CSS</span>
 				</div>
-				<div class="flex gap-2 items-center">
+				<div class="flex items-center gap-2">
 					<span class="text-xs font-medium md:text-sm">Photoshop</span>
 				</div>
-				<div class="flex gap-2 items-center">
+				<div class="flex items-center gap-2">
 					<span class="text-xs font-medium md:text-sm">Figma</span>
 				</div>
-				<div class="flex gap-2 items-center">
+				<div class="flex items-center gap-2">
 					<span class="text-xs font-medium md:text-sm">Nuxt</span>
 				</div>
 			</div>
