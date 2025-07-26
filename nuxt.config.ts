@@ -7,10 +7,13 @@ export default defineNuxtConfig({
   modules: ['shadcn-nuxt'],
   ssr: true,
   nitro: {
-    experimental: {
-      wasm: true
-    }
+    preset: 'node-server' // Para servidor Node.js
   },
+  // nitro: {
+  //   experimental: {
+  //     wasm: true
+  //   }
+  // },
   app: {
     head: {
       title: 'Edi Gabriel - Product Designer',
