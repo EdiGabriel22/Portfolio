@@ -2,9 +2,15 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-15',
+  compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: ['shadcn-nuxt'],
+  ssr: true,
+  nitro: {
+    experimental: {
+      wasm: true
+    }
+  },
   app: {
     head: {
       title: 'Edi Gabriel - Product Designer',
