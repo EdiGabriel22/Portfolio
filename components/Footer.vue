@@ -1,5 +1,5 @@
 <template>
-	<section class="py-8 px-4 md:px-8">
+	<section class="p-4">
 		<footer class="py-16 text-center bg-primary text-secondary rounded-3xl">
 			<div class="mb-8">
 				<div class="text-lg font-bold mb-6">EDI GABRIEL</div>

@@ -23,5 +23,5 @@ logs
 .env.*
 !.env.example
 
-# Claude
-CLAUDE.md
+# Codex
+AGENTS.md

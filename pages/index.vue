@@ -1,12 +1,7 @@
 <template>
-    <div class="w-full mx-auto max-w-7xl">
-        <Header/>
+    <div class="relative">
         <Hero/>
-
-			<Button>Click me</Button>
-
         <Projects/>
-        <About/>
         <Footer/>
     </div>
 </template>

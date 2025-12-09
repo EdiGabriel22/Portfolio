@@ -1,59 +1,64 @@
 <template>
-	<section id="projects" class="px-6 py-20 bg-secondary text-dark">
-		<div class="flex items-center justify-between mb-12">
-			<h2 class="text-3xl font-semibold">Principais Trabalhos</h2>
-			<a href="#" class="text-sm font-medium hover:underline">VER TODOS</a>
+	<section id="projects" class="mx-auto max-w-[1440px] px-4 pb-16 text-dark">
+		<div class="mb-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+			<div>
+				<p class="text-xs font-semibold uppercase tracking-[0.14em] text-primary-700">Portfólio</p>
+				<h2 class="text-3xl font-semibold md:text-4xl">Principais Trabalhos</h2>
+			</div>
+			<a href="#projects" class="text-sm font-medium text-primary-900 underline-offset-4 transition hover:underline">VER TODOS</a>
 		</div>
-		
-		<div class="grid gap-8 md:grid-cols-2">
-			<!-- Viva Sorte Project -->
-			<div class="overflow-hidden transition shadow-lg rounded-2xl hover:shadow-xl group">
-				<div class="relative h-80 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-					<div class="text-white text-center">
-						<h3 class="text-4xl font-bold mb-2">VIVA SORTE</h3>
-						<div class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center">
-							<span class="text-blue-600 font-bold text-xl">VS</span>
-						</div>
-					</div>
-				</div>
-				<div class="p-6 bg-white">
-					<div class="flex items-center justify-between">
-						<div>
-							<h3 class="text-xl font-bold">Viva Sorte</h3>
-							<p class="text-sm text-gray-500 uppercase tracking-wide">PRODUCT DESIGN, DESENVOLVIMENTO</p>
-						</div>
-					</div>
-				</div>
-			</div>
 
-			<!-- Cartão da Gente Project -->
-			<div class="overflow-hidden transition shadow-lg rounded-2xl hover:shadow-xl group">
-				<div class="relative h-80 bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
-					<div class="text-white text-center">
-						<div class="flex items-center justify-center mb-4">
-							<div class="w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center mr-4">
-								<span class="text-white font-bold text-xl">C9</span>
-							</div>
-							<div>
-								<h3 class="text-2xl font-bold">cartão</h3>
-								<h3 class="text-2xl font-bold">Gente</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="p-6 bg-white">
-					<div class="flex items-center justify-between">
-						<div>
-							<h3 class="text-xl font-bold">Cartão da Gente</h3>
-							<p class="text-sm text-gray-500 uppercase tracking-wide">PRODUCT DESIGN</p>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+			<ProjectCard
+				v-for="project in projects"
+				:key="project.title"
+				:title="project.title"
+				:description="project.description"
+				:tags="project.tags"
+				:image="project.image"
+			/>
 		</div>
 	</section>
 </template>
 
-<script setup>
-	// Projects data is now hardcoded in template for better design control
+<script setup lang="ts">
+type Project = {
+	title: string;
+	description: string;
+	tags: string[];
+	image?: string;
+};
+
+const projects: Project[] = [
+	{
+		title: "Viva Sorte",
+		description: "Dashboard e plataforma de sorteios com foco em retenção.",
+		tags: ["UI/UX", "Desenvolvimento"],
+	},
+	{
+		title: "Cartão da Gente",
+		description: "Experiência mobile-first para gestão de benefícios.",
+		tags: ["UI/UX", "Desenvolvimento"],
+	},
+	{
+		title: "Portal ES9",
+		description: "Landing institucional com identidade vibrante.",
+		tags: ["UI/UX", "Desenvolvimento"],
+	},
+	{
+		title: "App Fideliza",
+		description: "Aplicativo de pontos e recompensas com onboarding guiado.",
+		tags: ["UI/UX", "Desenvolvimento"],
+	},
+	{
+		title: "Dashboard Cartões",
+		description: "Console administrativo com visão 360° de clientes.",
+		tags: ["UI/UX", "Desenvolvimento"],
+	},
+	{
+		title: "E-commerce Verde",
+		description: "Loja sustentável com destaque para impacto ambiental.",
+		tags: ["UI/UX", "Desenvolvimento"],
+	},
+];
 </script>
