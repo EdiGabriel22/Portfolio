@@ -22,6 +22,13 @@ export default defineNuxtConfig({
       },
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        {
+          rel: 'preload',
+          href: '/fonts/chillax/Chillax-Variable.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        }
       ]
     }
   },

@@ -1,10 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
+
+@font-face {
+	font-family: "Chillax";
+	src:
+		url("/fonts/chillax/Chillax-Variable.woff2") format("woff2"),
+		url("/fonts/chillax/Chillax-Variable.woff") format("woff");
+	font-weight: 200 700;
+	font-display: swap;
+	font-style: normal;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+	--font-sans: "Chillax", "Chillax Variable", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", sans-serif;
 	--color-primary: #1a4a3a;
 	--color-secondary: #f5f5f0;
 	--color-dark: #1a1a1a;
@@ -35,7 +46,7 @@ html {
 }
 
 @theme inline {
-	--color-background: var(--background);
+	--color-background: var(--color-secondary-100);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
 	--color-card-foreground: var(--card-foreground);
@@ -57,10 +68,22 @@ html {
     --color-primary-800: oklch(0.363 0.067 155.07);
     --color-primary-900: oklch(0.286 0.052 155.65);
     --color-primary-950: oklch(0.246 0.045 155.03);
+
+	/* Secondary */
+	--color-secondary: oklch(0.833 0.047 76.75);
+	--color-secondary-50: oklch(0.974 0.006 75.38);
+	--color-secondary-100: oklch(0.949 0.013 75.35);
+	--color-secondary-200: oklch(0.888 0.03 75.66);
+	--color-secondary-300: oklch(0.833 0.047 76.75);
+	--color-secondary-400: oklch(0.734 0.042 77.02);
+	--color-secondary-500: oklch(0.638 0.035 76.25);
+	--color-secondary-600: oklch(0.534 0.03 76.54);
+	--color-secondary-700: oklch(0.44 0.024 77.05);
+	--color-secondary-800: oklch(0.337 0.02 76.73);
+	--color-secondary-900: oklch(0.242 0.013 78.01);
+	--color-secondary-950: oklch(0.188 0.011 80.49);
     
 	--color-primary-foreground: var(--primary-foreground);
-	--color-secondary: var(--secondary);
-	--color-secondary-foreground: var(--secondary-foreground);
 	--color-muted: var(--muted);
 	--color-muted-foreground: var(--muted-foreground);
 	--color-accent: var(--accent);
