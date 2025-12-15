@@ -1,11 +1,13 @@
 <template>
-        <motion.section
-                :initial="{ opacity: 0, y: 32 }"
-                :animate="{ opacity: 1, y: 0 }"
-                :transition="{ duration: 0.7, ease: 'easeOut' }"
+        <section
                 class="relative m-4 flex h-[calc(100vh-32px)] flex-col items-center justify-center gap-4 rounded-4xl border-4 border-primary-900 bg-primary text-center text-[#dac5a7]"
         >
-                <div class="z-10">
+                <motion.div
+                        :initial="{ opacity: 0, y: 24 }"
+                        :animate="{ opacity: 1, y: 0 }"
+                        :transition="{ duration: 0.7, ease: 'easeOut' }"
+                        class="z-10"
+                >
                         <div class="text-base font-medium leading-relaxed tracking-[0.04em] md:text-lg">
                                 <p>Oi! sou Edi Gabriel,</p>
                                 <p>Tem um projeto em mente? Vamos conversar→</p>
@@ -18,12 +20,15 @@
                                 <br />
                                 & Front-End Developer
                         </h1>
-                </div>
+                </motion.div>
 
-                <div
-                        class="absolute  -bottom-6 z-0   h-full w-full bg-[radial-gradient(circle_at_50%_85%,rgba(218,197,167,0.12),rgba(12,39,23,0)_55%)]"
+                <motion.div
+                        :initial="{ opacity: 0.2 }"
+                        :animate="{ opacity: 1 }"
+                        :transition="{ duration: 0.9, ease: 'easeOut' }"
+                        class="absolute -bottom-6 z-0 h-full w-full bg-[radial-gradient(circle_at_50%_85%,rgba(218,197,167,0.12),rgba(12,39,23,0)_55%)]"
                 />
-        </motion.section>
+        </section>
 </template>
 
 <script setup lang="ts">
