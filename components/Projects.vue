@@ -9,16 +9,17 @@
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-			<ProjectCard
-				v-for="project in projects"
-				:key="project.title"
-				:title="project.title"
-				:description="project.description"
-				:tags="project.tags"
-				:image="project.image"
-			/>
-		</div>
-	</section>
+                        <ProjectCard
+                                v-for="(project, index) in projects"
+                                :key="project.title"
+                                :title="project.title"
+                                :description="project.description"
+                                :tags="project.tags"
+                                :image="project.image"
+                                :index="index"
+                        />
+                </div>
+        </section>
 </template>
 
 <script setup lang="ts">
