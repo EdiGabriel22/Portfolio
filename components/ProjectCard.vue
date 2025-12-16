@@ -1,14 +1,18 @@
 <template>
-        <motion.article
-                :initial="{ opacity: 0, y: 28 }"
-                :animate="{ opacity: 1, y: 0 }"
-                :transition="{ duration: 0.6, ease: 'easeOut', delay: (index ?? 0) * 0.08 }"
-                class="group relative aspect-[16/9] cursor-pointer overflow-hidden rounded-[16px] bg-[#dac5a7] shadow-[0_8px_30px_rgba(12,39,23,0.12)] transition duration-500  focus-visible:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background outline-none"
-                tabindex="0"
-        >
-                <div class="absolute inset-0">
-                        <img
-                                v-if="image"
+	<motion.article
+		:initial="{ opacity: 0, y: 28 }"
+		:animate="inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }"
+		:transition="{
+			duration: 0.6,
+			ease: 'easeOut',
+			delay: (index ?? 0) * 0.08,
+		}"
+		class="group relative aspect-[16/9] cursor-pointer overflow-hidden rounded-[16px] bg-[#dac5a7] shadow-[0_8px_30px_rgba(12,39,23,0.12)] transition duration-500 focus-visible:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background outline-none"
+		tabindex="0"
+	>
+		<div class="absolute inset-0">
+			<img
+				v-if="image"
 				:src="image"
 				:alt="title"
 				class="h-full w-full object-cover"
@@ -34,22 +38,25 @@
 				<p class="text-xl font-semibold leading-tight tracking-tight">
 					{{ title }}
 				</p>
-                                <p class="text-sm font-medium text-white/90 leading-snug">
-                                        {{ description }}
-                                </p>
-                        </div>
-                </div>
-        </motion.article>
+				<p class="text-sm font-medium text-white/90 leading-snug">
+					{{ description }}
+				</p>
+			</div>
+		</div>
+	</motion.article>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-        title: string;
-        description: string;
-        tags: string[];
-        image?: string;
-        index?: number;
-}>();
+import { motion } from "motion-v";
 
-import { motion } from 'motion-v';
+withDefaults(defineProps<{
+	title: string;
+	description: string;
+	tags: string[];
+	image?: string;
+	index?: number;
+	inView?: boolean;
+}>(), {
+	inView: true,
+});
 </script>

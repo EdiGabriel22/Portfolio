@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['shadcn-nuxt'],
+  modules: ['shadcn-nuxt','motion-v/nuxt'],
   ssr: true,
   nitro: {
     preset: 'node-server' // Para servidor Node.js

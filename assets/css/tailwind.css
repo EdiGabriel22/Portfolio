@@ -45,6 +45,12 @@ html {
 	scroll-behavior: smooth;
 }
 
+/* Prevent scroll anchoring from drifting scroll position on reload */
+html,
+body {
+	overflow-anchor: none;
+}
+
 @theme inline {
 	--color-background: var(--color-secondary-100);
 	--color-foreground: var(--foreground);
