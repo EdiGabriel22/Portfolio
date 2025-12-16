@@ -31,9 +31,9 @@
 			</span>
 		</div>
 
-		<div class="absolute inset-x-2 bottom-2">
+		<div class="absolute inset-x-2 bottom-2 ">
 			<div
-				class="pointer-events-none relative rounded-[16px] bg-[rgba(4,25,32,0.2)] px-4 py-3 text-left text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-[1px] transition duration-500 ease-out opacity-0 translate-y-[120%] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+				class="pointer-events-none relative rounded-[16px] bg-zinc-900/40 px-4 py-3 text-left text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-[1px] transition duration-500 ease-out md:opacity-0 md:translate-y-[120%] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
 			>
 				<p class="text-xl font-semibold leading-tight tracking-tight">
 					{{ title }}

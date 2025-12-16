@@ -1,5 +1,6 @@
 <template>
 	<section
+		id="hero-section"
 		class="relative m-4 flex h-[calc(100vh-32px)] flex-col items-center justify-center gap-4 rounded-4xl border-4 border-primary-900 bg-primary text-center text-[#dac5a7]"
 	>
 		<motion.div
@@ -23,7 +24,7 @@
 				& Front-End Developer
 			</h1>
 		</motion.div>
-		<Cursor follow/>
+		
 		<motion.div
 			:initial="{ opacity: 0.2 }"
 			:animate="{ opacity: 1 }"

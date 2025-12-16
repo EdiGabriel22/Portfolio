@@ -40,8 +40,13 @@
 </template>
 
 <script setup lang="ts">
-	import { useInView } from "motion-v";
+import { useInView } from "motion-v";
 import { ref } from "vue";
+
+import cartaoDaGenteImage from "~/assets/projects/cdt.png";
+import ativacaoNoFutebolImage from "~/assets/projects/fut.png";
+import portalEs9Image from "~/assets/projects/sdt.png";
+import vivaSorteImage from "~/assets/projects/vvs.png";
 
 	type Project = {
 		title: string;
@@ -58,37 +63,28 @@ import { ref } from "vue";
 
 	const projects: Project[] = [
 		{
-			title: "Viva Sorte",
-			description:
-				"Dashboard e plataforma de sorteios com foco em retenção.",
-			tags: ["UI/UX", "Desenvolvimento"],
+			title: "Viva Sorte +",
+			description: "Sorteios que transforma vidas em todo o Brasil",
+			tags: [ "Desenvolvimento", "UI/UX", "Product Design" ],
+			image: vivaSorteImage,
 		},
 		{
 			title: "Cartão da Gente",
-			description: "Experiência mobile-first para gestão de benefícios.",
-			tags: ["UI/UX", "Desenvolvimento"],
+			description: "Muito mais que um cartão de beneficios",
+			tags: ["Product Design", "UI/UX"],
+			image: cartaoDaGenteImage,
 		},
 		{
-			title: "Portal ES9",
-			description: "Landing institucional com identidade vibrante.",
-			tags: ["UI/UX", "Desenvolvimento"],
+			title: "Sabadão de Todos",
+			description: "Noites de sábado ganharam ainda mais diversão",
+			tags: ["Product Design", "UI/UX", "Desenvolvimento"],
+			image: portalEs9Image,
 		},
 		{
-			title: "App Fideliza",
-			description:
-				"Aplicativo de pontos e recompensas com onboarding guiado.",
-			tags: ["UI/UX", "Desenvolvimento"],
-		},
-		{
-			title: "Dashboard Cartões",
-			description: "Console administrativo com visão 360° de clientes.",
-			tags: ["UI/UX", "Desenvolvimento"],
-		},
-		{
-			title: "E-commerce Verde",
-			description:
-				"Loja sustentável com destaque para impacto ambiental.",
-			tags: ["UI/UX", "Desenvolvimento"],
+			title: "Ativação no Futebol",
+			description: "Ativação de benefícios para os torcedores",
+			tags: ["Product Design", "UI/UX", "Desenvolvimento"],
+			image: ativacaoNoFutebolImage,
 		},
 	];
 </script>

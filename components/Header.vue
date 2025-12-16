@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import { Button } from "@/components/ui/button";
-import { ref } from "vue";
+import { LucideMenu, LucideX } from "lucide-vue-next";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 
 	const links = [
 		{ label: "Início", to: "/" },
@@ -9,6 +10,7 @@ import { ref } from "vue";
 	];
 
 	const isMenuOpen = ref(false);
+	const isPastHero = ref(false);
 
 	const toggleMenu = () => {
 		isMenuOpen.value = !isMenuOpen.value;
@@ -17,21 +19,44 @@ import { ref } from "vue";
 	const closeMenu = () => {
 		isMenuOpen.value = false;
 	};
+
+	const handleScroll = () => {
+		const heroSection = document.getElementById("hero-section");
+		if (heroSection) {
+			const rect = heroSection.getBoundingClientRect();
+			isPastHero.value = rect.bottom < 100;
+		}
+	};
+
+	const iconColorClass = computed(() =>
+		isPastHero.value ? "text-primary" : "text-secondary"
+	);
+
+	onMounted(() => {
+		handleScroll();
+		window.addEventListener("scroll", handleScroll);
+	});
+
+	onUnmounted(() => {
+		window.removeEventListener("scroll", handleScroll);
+	});
 </script>
 
 <template>
-	<div class="fixed top-9 z-30 w-full md:w-fit mx-auto left-1/2 -translate-x-1/2 px-4 md:px-0">
+	<div
+		class="fixed top-7 md:top-9 z-30 w-full md:w-fit mx-auto left-1/2 -translate-x-1/2 px-7 md:px-0"
+	>
 		<header
 			class="h-fit flex items-center justify-between gap-6 overflow-hidden rounded-[18px] border border-white/10 px-6 py-3 shadow-[0_0_2px_rgba(0,0,0,0.1),0_1px_8px_rgba(0,0,0,0.12)] backdrop-blur-md backdrop-saturate-150 w-full md:w-auto"
 		>
 			<NuxtLink to="/" @click="closeMenu">
 				<div class="flex items-center gap-3">
 					<div
-						class="flex h-10 w-10 items-center justify-center rounded-[14px] bg-[#0c2717] shadow-inner"
+						class="flex size-8 md:size-10 items-center justify-center rounded-[14px] bg-primary shadow-inner"
 					>
 						<svg
 							aria-hidden="true"
-							class="h-8 w-8 text-[#dac5a7]"
+							class="size-6 md:size-8 text-secondary"
 							fill="currentColor"
 							viewBox="0 0 64 64"
 							xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +82,17 @@ import { ref } from "vue";
 			<!-- Menu Desktop -->
 			<nav
 				aria-label="Navegação principal"
-				class="hidden md:flex items-center gap-6 text-[16px] font-medium tracking-[0.16em] text-[#dac5a7]"
+				class="hidden md:flex items-center gap-6 text-[16px] font-medium tracking-[0.16em]"
+				:class="isPastHero ? 'text-primary' : 'text-secondary'"
 			>
 				<Button
 					v-for="link in links"
 					:key="link.to"
 					variant="link"
 					as-child
-					class="color-red-500"
+					:class="
+						isPastHero ? 'text-primary hover:text-primary/80' : ''
+					"
 				>
 					<NuxtLink :to="link.to" @click="closeMenu">
 						{{ link.label }}
@@ -80,40 +108,13 @@ import { ref } from "vue";
 			<!-- Botão Hambúrguer Mobile -->
 			<button
 				@click="toggleMenu"
-				class="md:hidden flex items-center justify-center w-10 h-10 rounded-md text-[#dac5a7] hover:bg-white/10 transition-colors"
+				class="md:hidden flex items-center justify-center size-10 rounded-md hover:bg-white/10 transition-colors"
+				:class="iconColorClass"
 				aria-label="Toggle menu"
-				aria-expanded="isMenuOpen"
+				:aria-expanded="isMenuOpen"
 			>
-				<svg
-					v-if="!isMenuOpen"
-					class="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h16"
-					/>
-				</svg>
-				<svg
-					v-else
-					class="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"
-					/>
-				</svg>
+				<LucideMenu v-if="!isMenuOpen" class="size-6" />
+				<LucideX v-else class="size-6" />
 			</button>
 		</header>
 
@@ -137,7 +138,8 @@ import { ref } from "vue";
 						:key="link.to"
 						:to="link.to"
 						@click="closeMenu"
-						class="px-6 py-3 text-[16px] font-medium tracking-[0.16em] text-[#dac5a7] hover:bg-white/10 transition-colors"
+						class="px-6 py-3 text-[16px] font-medium tracking-[0.16em] hover:bg-white/10 transition-colors"
+						:class="isPastHero ? 'text-primary' : 'text-[#dac5a7]'"
 					>
 						{{ link.label }}
 					</NuxtLink>
