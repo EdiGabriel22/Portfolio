@@ -2,7 +2,7 @@
 	<section
 		id="projects"
 		ref="sectionRef"
-		class="mx-auto max-w-[1440px] px-4 pb-16 text-dark"
+		class="mx-auto max-w-[1440px] px-4 p-12 text-dark"
 	>
 		<div
 			class="mb-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
@@ -17,11 +17,6 @@
 					Principais Trabalhos
 				</h2>
 			</div>
-			<a
-				href="#projects"
-				class="text-sm font-medium text-primary-900 underline-offset-4 transition hover:underline"
-				>VER TODOS</a
-			>
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

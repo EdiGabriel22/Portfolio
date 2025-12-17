@@ -2,7 +2,7 @@
 	<section class="p-4 relative">
 		<div class="py-16 relative text-center bg-primary rounded-3xl">
 			<div class="relative z-10 flex  flex-col items-center justify-center">
-				<h4 class="text-6xl font-extralight mb-6 text-secondary">
+				<h4 class="md:text-6xl text-3xl font-extralight mb-6 text-secondary">
 					Vamos começar um projeto <br />
 					sob medida?
 				</h4>

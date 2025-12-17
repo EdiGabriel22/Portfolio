@@ -5,7 +5,7 @@
 	Github,
 	Linkedin,
 } from "lucide-vue-next";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 	const socialLinks = [
 		{
@@ -31,9 +31,39 @@ import { reactive } from "vue";
 		message: "",
 	});
 
+	const contactEmail = "edigabrielcontato@gmail.com";
+	const isSubmitting = ref(false);
+	const submitStatus = ref<"idle" | "opening" | "error">("idle");
+
 	const handleSubmit = () => {
-		// TODO: Implementar envio do formulário
-		console.log("Form submitted:", { ...formData });
+		const name = formData.name.trim();
+		const email = formData.email.trim();
+		const message = formData.message.trim();
+
+		const subject = `Contato pelo Portfólio — ${name || "Novo contato"}`;
+		const body = [
+			`Nome: ${name}`,
+			`Email: ${email}`,
+			"",
+			"Mensagem:",
+			message,
+		].join("\n");
+
+		const mailtoLink = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+		isSubmitting.value = true;
+		submitStatus.value = "opening";
+
+		try {
+			window.location.href = mailtoLink;
+			formData.name = "";
+			formData.email = "";
+			formData.message = "";
+		} catch {
+			submitStatus.value = "error";
+		} finally {
+			isSubmitting.value = false;
+		}
 	};
 </script>
 
@@ -116,8 +146,26 @@ import { reactive } from "vue";
 							/>
 						</div>
 
-						<Button type="submit" size="lg" class="justify-center">
-							Enviar mensagem
+						<p
+							v-if="submitStatus === 'opening'"
+							class="text-sm text-muted-foreground"
+						>
+							Abrindo seu e-mail…
+						</p>
+						<p
+							v-else-if="submitStatus === 'error'"
+							class="text-sm text-destructive"
+						>
+							Não foi possível abrir seu cliente de e-mail. Tente novamente.
+						</p>
+
+						<Button
+							type="submit"
+							size="lg"
+							class="justify-center"
+							:disabled="isSubmitting"
+						>
+							{{ isSubmitting ? "Preparando…" : "Enviar mensagem" }}
 						</Button>
 					</form>
 				</div>
