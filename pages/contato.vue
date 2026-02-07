@@ -1,11 +1,11 @@
 <script setup lang="ts">
-	import {
+import {
 	ArrowRight,
 	Beaker,
 	Github,
 	Linkedin,
 } from "lucide-vue-next";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 
 	const socialLinks = [
 		{
@@ -34,6 +34,38 @@ import { reactive, ref } from "vue";
 	const contactEmail = "edigabrielcontato@gmail.com";
 	const isSubmitting = ref(false);
 	const submitStatus = ref<"idle" | "opening" | "error">("idle");
+	const siteBaseUrl = useSiteBaseUrl();
+
+	useSeoMeta({
+		title: "Contato",
+		description:
+			"Entre em contato com Edi Gabriel para projetos de Product Design, UI/UX e desenvolvimento front-end.",
+		ogTitle: "Contato",
+		ogDescription:
+			"Fale com Edi Gabriel e receba um retorno com próximos passos para seu projeto digital.",
+	});
+
+	const contactPageSchema = computed(() => ({
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		"@id": `${siteBaseUrl.value}/contato#webpage`,
+		url: `${siteBaseUrl.value}/contato`,
+		name: "Contato",
+		mainEntity: {
+			"@type": "Person",
+			"@id": `${siteBaseUrl.value}/#person`,
+		},
+	}));
+
+	useHead(() => ({
+		script: [
+			{
+				key: "schema-contact-page",
+				type: "application/ld+json",
+				children: JSON.stringify(contactPageSchema.value),
+			},
+		],
+	}));
 
 	const handleSubmit = () => {
 		const name = formData.name.trim();
@@ -80,11 +112,11 @@ import { reactive, ref } from "vue";
 						>
 							fale comigo
 						</p>
-						<h2
+						<h1
 							class="text-3xl font-semibold leading-tight text-foreground md:text-4xl"
 						>
 							Entrar em contato
-						</h2>
+						</h1>
 						<p class="text-base text-muted-foreground">
 							Conte-me um pouco sobre o projeto, objetivos ou
 							dúvidas e eu retorno o mais rápido possível com

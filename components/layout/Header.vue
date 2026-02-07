@@ -1,46 +1,71 @@
 <script setup lang="ts">
-	import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import { LucideMenu, LucideX } from "lucide-vue-next";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import logoUrl from "~/assets/logo.svg?url";
 
-	const links = [
-		{ label: "Início", to: "/" },
-		{ label: "Projetos", to: "/projetos" },
-		{ label: "Sobre", to: "/sobre" },
-	];
+const links = [
+	{ label: "Início", to: "/" },
+	{ label: "Projetos", to: "/projetos" },
+	{ label: "Sobre", to: "/sobre" },
+];
 
-	const isMenuOpen = ref(false);
-	const isPastHero = ref(false);
+const route = useRoute();
+const isMenuOpen = ref(false);
+const isPastHero = ref(false);
 
-	const toggleMenu = () => {
-		isMenuOpen.value = !isMenuOpen.value;
-	};
+const toggleMenu = () => {
+	isMenuOpen.value = !isMenuOpen.value;
+};
 
-	const closeMenu = () => {
-		isMenuOpen.value = false;
-	};
+const closeMenu = () => {
+	isMenuOpen.value = false;
+};
 
-	const handleScroll = () => {
-		const heroSection = document.getElementById("hero-section");
-		if (heroSection) {
-			const rect = heroSection.getBoundingClientRect();
-			isPastHero.value = rect.bottom < 100;
+const isCasePage = computed(() => route.path.startsWith("/case/"));
+const isContactPage = computed(() => route.path === "/contato");
+const isProjectsPage = computed(() => route.path.startsWith("/projetos"));
+const isSolidHeader = computed(
+	() =>
+		isPastHero.value ||
+		isCasePage.value ||
+		isContactPage.value ||
+		isProjectsPage.value
+);
+
+const handleScroll = () => {
+	const heroSection = document.getElementById("hero-section");
+	if (!heroSection) {
+		isPastHero.value = false;
+		return;
+	}
+
+	const rect = heroSection.getBoundingClientRect();
+	isPastHero.value = rect.bottom < 100;
+};
+
+const iconColorClass = computed(() =>
+	isSolidHeader.value ? "text-primary" : "text-secondary"
+);
+
+watch(
+	() => route.path,
+	() => {
+		closeMenu();
+		if (import.meta.client) {
+			handleScroll();
 		}
-	};
+	}
+);
 
-	const iconColorClass = computed(() =>
-		isPastHero.value ? "text-primary" : "text-secondary"
-	);
+onMounted(() => {
+	handleScroll();
+	window.addEventListener("scroll", handleScroll);
+});
 
-	onMounted(() => {
-		handleScroll();
-		window.addEventListener("scroll", handleScroll);
-	});
-
-	onUnmounted(() => {
-		window.removeEventListener("scroll", handleScroll);
-	});
+onUnmounted(() => {
+	window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
@@ -49,7 +74,7 @@ import logoUrl from "~/assets/logo.svg?url";
 	>
 		<header
 			class="h-fit flex items-center justify-between gap-6 overflow-hidden rounded-[18px] border border-white/10 px-6 py-3 shadow-[0_0_2px_rgba(0,0,0,0.1),0_1px_8px_rgba(0,0,0,0.12)] backdrop-blur-md backdrop-saturate-150 w-full md:w-auto"
-			:class="isPastHero ? 'bg-primary' : ''"
+			:class="isSolidHeader ? 'bg-primary' : ''"
 		>
 			<NuxtLink to="/" @click="closeMenu">
 				<img :src="logoUrl" alt="Logo" class="size-6 md:size-8" />

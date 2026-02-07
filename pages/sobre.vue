@@ -1,5 +1,12 @@
 <script setup lang="ts">
-	import UnderConstruction from "@/components/UnderConstruction.vue";
+import UnderConstruction from "~/components/common/UnderConstruction.vue";
+
+useSeoMeta({
+	title: "Sobre",
+	description:
+		"Página sobre Edi Gabriel em atualização. Em breve com trajetória, experiência e processo.",
+	robots: "noindex,nofollow",
+});
 </script>
 
 <template>
