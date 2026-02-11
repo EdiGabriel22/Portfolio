@@ -4,6 +4,15 @@ import { LucideMenu, LucideX } from "lucide-vue-next";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import logoUrl from "~/assets/logo.svg?url";
 
+const props = withDefaults(
+	defineProps<{
+		variant?: "default" | "secondary" | "auto";
+	}>(),
+	{
+		variant: "default",
+	},
+);
+
 const links = [
 	{ label: "Início", to: "/" },
 	{ label: "Projetos", to: "/projetos" },
@@ -22,18 +31,27 @@ const closeMenu = () => {
 	isMenuOpen.value = false;
 };
 
-const isCasePage = computed(() => route.path.startsWith("/case/"));
-const isContactPage = computed(() => route.path === "/contato");
-const isProjectsPage = computed(() => route.path.startsWith("/projetos"));
-const isSolidHeader = computed(
-	() =>
-		isPastHero.value ||
-		isCasePage.value ||
-		isContactPage.value ||
-		isProjectsPage.value
+const isHomePage = computed(() => route.path === "/");
+const shouldTrackHero = computed(
+	() => props.variant === "auto" && isHomePage.value
 );
 
+const headerVariant = computed<"default" | "secondary">(() => {
+	if (props.variant === "default" || props.variant === "secondary") {
+		return props.variant;
+	}
+
+	return isPastHero.value ? "default" : "secondary";
+});
+
+const isSolidHeader = computed(() => headerVariant.value === "default");
+
 const handleScroll = () => {
+	if (!shouldTrackHero.value) {
+		isPastHero.value = true;
+		return;
+	}
+
 	const heroSection = document.getElementById("hero-section");
 	if (!heroSection) {
 		isPastHero.value = false;
@@ -49,7 +67,7 @@ const iconColorClass = computed(() =>
 );
 
 watch(
-	() => route.path,
+	() => [route.path, props.variant],
 	() => {
 		closeMenu();
 		if (import.meta.client) {

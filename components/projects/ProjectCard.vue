@@ -4,6 +4,19 @@
 		class="group relative block aspect-[16/9] overflow-hidden rounded-[16px] bg-[#dac5a7] shadow-[0_8px_30px_rgba(12,39,23,0.12)] transition duration-500 focus-visible:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background outline-none"
 		:aria-label="`Abrir case ${title}`"
 	>
+		<div class="absolute inset-0">
+			<NuxtImg
+				v-if="image"
+				:src="image"
+				:alt="title"
+				width="1600"
+				height="900"
+				sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+				class="h-full w-full object-cover"
+				loading="lazy"
+			/>
+		</div>
+
 		<motion.article
 			:initial="{ opacity: 0, y: 28 }"
 			:animate="inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }"
@@ -14,20 +27,6 @@
 			}"
 			class="relative h-full w-full"
 		>
-			<div class="absolute inset-0">
-				<NuxtImg
-					v-if="image"
-					:src="image"
-					:alt="title"
-					width="1600"
-					height="900"
-					sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-					class="h-full w-full object-cover"
-					loading="lazy"
-				/>
-				<div v-else class="h-full w-full bg-[#dac5a7]" />
-			</div>
-
 			<div class="absolute left-2 top-2 flex gap-2" aria-hidden="true">
 				<span
 					v-for="tag in tags"
@@ -38,17 +37,17 @@
 				</span>
 			</div>
 
-			<div class="absolute inset-x-2 bottom-2 ">
-				<div
-					class="pointer-events-none relative rounded-[16px] bg-zinc-900/40 px-4 py-3 text-left text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-[1px] transition duration-500 ease-out md:opacity-0 md:translate-y-[120%] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
-				>
-					<p class="text-xl font-semibold leading-tight tracking-tight">
-						{{ title }}
-					</p>
-					<p class="text-sm font-medium text-white/90 leading-snug">
-						{{ description }}
-					</p>
-				</div>
+			<!-- Bottom overlay -->
+			<div
+				class="absolute inset-x-2 bottom-2 pointer-events-none  rounded-[16px] bg-zinc-900/40 px-4 py-3 text-left text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-[1px] transition duration-500 ease-out md:opacity-0 md:translate-y-[120%] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+			>
+				<p class="text-xl font-semibold leading-tight tracking-tight">
+					{{ title }}
+				</p>
+
+				<p class="text-sm font-medium text-white/90 leading-snug line-clamp-2">
+					{{ description }}
+				</p>
 			</div>
 		</motion.article>
 	</NuxtLink>

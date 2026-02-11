@@ -84,7 +84,7 @@ useHead(() => ({
 
 <template>
   <div>
-    <Header/>
+    <Header variant="auto" />
     <NuxtPage/>
   </div>
 </template>
