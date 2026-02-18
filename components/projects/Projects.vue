@@ -18,12 +18,18 @@
 				</h2>
 			</div>
 
-			<NuxtLink
-				to="/projetos"
-				class="inline-flex items-center justify-center rounded-full border border-primary-700/25 px-4 py-2 text-sm font-semibold text-primary-800 transition hover:border-primary-700/50 hover:bg-primary-50"
+			<Button
+				as-child
+				size="lg"
+				variant="link"
+				class="text-primary-700"
 			>
-				Ver todos os cases
-			</NuxtLink>
+				<NuxtLink to="/projetos">
+					Ver todos os cases
+
+					<LucideArrowRight class="size-4" />
+				</NuxtLink>
+			</Button>
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -43,6 +49,7 @@
 </template>
 
 <script setup lang="ts">
+import { LucideArrowRight } from "lucide-vue-next";
 import { useInView } from "motion-v";
 import { computed, ref } from "vue";
 import ProjectCard from "~/components/projects/ProjectCard.vue";

@@ -62,9 +62,7 @@ const handleScroll = () => {
 	isPastHero.value = rect.bottom < 100;
 };
 
-const iconColorClass = computed(() =>
-	isSolidHeader.value ? "text-primary" : "text-secondary"
-);
+const iconColorClass = computed(() => "text-secondary");
 
 watch(
 	() => [route.path, props.variant],

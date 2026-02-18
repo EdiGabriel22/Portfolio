@@ -14,6 +14,7 @@ export type DirectusProject = {
 	content?: string | null;
 	skills?: string[] | string | Array<Record<string, unknown>> | null;
 	cover_image?: string | DirectusFile | null;
+	link?: string | null;
 };
 
 const slugify = (value: string): string =>
@@ -92,6 +93,28 @@ const resolveAssetUrl = (
 	return undefined;
 };
 
+const resolveExternalLink = (
+	link: DirectusProject["link"],
+): string | undefined => {
+	if (!link) return undefined;
+
+	const value = link.trim();
+	if (!value) return undefined;
+
+	const hasScheme = /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(value);
+	const normalized = hasScheme ? value : `https://${value}`;
+
+	try {
+		const url = new URL(normalized);
+		if (url.protocol !== "http:" && url.protocol !== "https:") {
+			return undefined;
+		}
+		return normalized;
+	} catch {
+		return undefined;
+	}
+};
+
 export const mapDirectusProject = (
 	baseUrl: string,
 	item: DirectusProject,
@@ -103,6 +126,7 @@ export const mapDirectusProject = (
 	content: item.content ?? "",
 	tags: normalizeTags(item.skills),
 	image: resolveAssetUrl(baseUrl, item.cover_image),
+	link: resolveExternalLink(item.link),
 });
 
 export const fetchDirectusProjects = async (options: {

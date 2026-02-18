@@ -48,6 +48,7 @@ const caseSchema = computed(() => ({
 	inLanguage: "pt-BR",
 	keywords: project.tags.join(", "),
 	image: project.image ? [project.image] : undefined,
+	sameAs: project.link ? [project.link] : undefined,
 	author: {
 		"@id": `${siteBaseUrl.value}/#person`,
 	},
@@ -119,24 +120,29 @@ useHead(() => ({
 							</span>
 						</li>
 					</ul>
-				</div>
 
+					<div v-if="project.link">
+						<Button
+							as-child
+							size="lg"
+							class="w-full"
+						>
+							<a
+								:href="project.link"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Acessar site do projeto
+							</a>
+						</Button>
+					</div>
+				</div>
 			</div>
 
 			<!-- Case details -->
 			<section
 				class="rounded-[28px] border border-border/80 bg-secondary-50/70 p-6 md:p-10"
 			>
-				<p
-					class="text-xs font-semibold uppercase tracking-[0.3em] text-primary-700"
-				>
-					detalhamento
-				</p>
-				
-				<h2 class="mt-2 text-2xl font-semibold text-foreground md:text-3xl">
-					Como o projeto foi construído
-				</h2>
-
 				<div class="mt-6 space-y-4 text-base leading-relaxed text-foreground/90">
 					<p v-if="!hasMarkdownContent">
 						Estou organizando este case com mais detalhes e decisões de

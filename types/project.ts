@@ -6,4 +6,5 @@ export type ProjectCase = {
 	content: string;
 	tags: string[];
 	image?: string;
+	link?: string;
 };
