@@ -2,7 +2,7 @@
 	<section
 		id="projects"
 		ref="sectionRef"
-		class="mx-auto max-w-[1440px] px-4 p-12 text-dark"
+		class="mx-auto container px-4 p-12 text-dark"
 	>
 		<div
 			class="mb-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"

@@ -1,3 +1,10 @@
+<template>
+  <div>
+    <Header variant="auto" />
+    <NuxtPage/>
+  </div>
+</template>
+
 <script setup lang="ts">
 import Header from "~/components/layout/Header.vue";
 
@@ -81,10 +88,3 @@ useHead(() => ({
 	],
 }));
 </script>
-
-<template>
-  <div>
-    <Header variant="auto" />
-    <NuxtPage/>
-  </div>
-</template>

@@ -1,3 +1,11 @@
+<template>
+    <div class="relative">
+        <Hero/>
+        <Projects/>
+        <Footer/>
+    </div>
+</template>
+
 <script setup lang="ts">
 import Footer from "~/components/layout/Footer.vue";
 import Hero from "~/components/home/Hero.vue";
@@ -38,11 +46,3 @@ useHead(() => ({
 	],
 }));
 </script>
-
-<template>
-    <div class="relative">
-        <Hero/>
-        <Projects/>
-        <Footer/>
-    </div>
-</template>

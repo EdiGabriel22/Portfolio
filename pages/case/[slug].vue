@@ -1,70 +1,3 @@
-<script setup lang="ts">
-import Footer from "~/components/layout/Footer.vue";
-import { renderMarkdownToHtml } from "~/lib/markdown";
-
-const route = useRoute();
-const slugParam = decodeURIComponent(String(route.params.slug ?? ""));
-const siteBaseUrl = useSiteBaseUrl();
-
-const { data: projects, error } = await useProjects();
-
-if (error.value) {
-	throw createError({
-		statusCode: error.value.statusCode ?? 500,
-		statusMessage: "Não foi possível carregar os detalhes do case.",
-	});
-}
-
-const project = projects.value.find((item) => item.slug === slugParam);
-
-if (!project) {
-	throw createError({
-		statusCode: 404,
-		statusMessage: "Case não encontrado.",
-	});
-}
-
-const markdownHtml = computed(() => renderMarkdownToHtml(project.content ?? ""));
-const hasMarkdownContent = computed(() => project.content.trim().length > 0);
-
-useSeoMeta({
-	title: `${project.title} - Case`,
-	description: project.description || "Detalhes do projeto",
-	ogTitle: `${project.title} - Case`,
-	ogDescription: project.description || "Detalhes do projeto",
-	ogImage: project.image,
-	twitterTitle: `${project.title} - Case`,
-	twitterDescription: project.description || "Detalhes do projeto",
-	twitterImage: project.image,
-});
-
-const caseSchema = computed(() => ({
-	"@context": "https://schema.org",
-	"@type": "CreativeWork",
-	"@id": `${siteBaseUrl.value}/case/${project.slug}#creativework`,
-	url: `${siteBaseUrl.value}/case/${project.slug}`,
-	name: project.title,
-	description: project.description || "Detalhes do projeto",
-	inLanguage: "pt-BR",
-	keywords: project.tags.join(", "),
-	image: project.image ? [project.image] : undefined,
-	sameAs: project.link ? [project.link] : undefined,
-	author: {
-		"@id": `${siteBaseUrl.value}/#person`,
-	},
-}));
-
-useHead(() => ({
-	script: [
-		{
-			key: `schema-case-${project.slug}`,
-			type: "application/ld+json",
-			children: JSON.stringify(caseSchema.value),
-		},
-	],
-}));
-</script>
-
 <template>
 	<main class="min-h-screen px-4 pb-16 pt-32">
 		<article class="mx-auto flex w-full max-w-[1440px] flex-col gap-8">
@@ -156,6 +89,73 @@ useHead(() => ({
 		</article>
 	</main>
 </template>
+
+<script setup lang="ts">
+import Footer from "~/components/layout/Footer.vue";
+import { renderMarkdownToHtml } from "~/lib/markdown";
+
+const route = useRoute();
+const slugParam = decodeURIComponent(String(route.params.slug ?? ""));
+const siteBaseUrl = useSiteBaseUrl();
+
+const { data: projects, error } = await useProjects();
+
+if (error.value) {
+	throw createError({
+		statusCode: error.value.statusCode ?? 500,
+		statusMessage: "Não foi possível carregar os detalhes do case.",
+	});
+}
+
+const project = projects.value.find((item) => item.slug === slugParam);
+
+if (!project) {
+	throw createError({
+		statusCode: 404,
+		statusMessage: "Case não encontrado.",
+	});
+}
+
+const markdownHtml = computed(() => renderMarkdownToHtml(project.content ?? ""));
+const hasMarkdownContent = computed(() => project.content.trim().length > 0);
+
+useSeoMeta({
+	title: `${project.title} - Case`,
+	description: project.description || "Detalhes do projeto",
+	ogTitle: `${project.title} - Case`,
+	ogDescription: project.description || "Detalhes do projeto",
+	ogImage: project.image,
+	twitterTitle: `${project.title} - Case`,
+	twitterDescription: project.description || "Detalhes do projeto",
+	twitterImage: project.image,
+});
+
+const caseSchema = computed(() => ({
+	"@context": "https://schema.org",
+	"@type": "CreativeWork",
+	"@id": `${siteBaseUrl.value}/case/${project.slug}#creativework`,
+	url: `${siteBaseUrl.value}/case/${project.slug}`,
+	name: project.title,
+	description: project.description || "Detalhes do projeto",
+	inLanguage: "pt-BR",
+	keywords: project.tags.join(", "),
+	image: project.image ? [project.image] : undefined,
+	sameAs: project.link ? [project.link] : undefined,
+	author: {
+		"@id": `${siteBaseUrl.value}/#person`,
+	},
+}));
+
+useHead(() => ({
+	script: [
+		{
+			key: `schema-case-${project.slug}`,
+			type: "application/ld+json",
+			children: JSON.stringify(caseSchema.value),
+		},
+	],
+}));
+</script>
 
 <style scoped>
 .case-markdown:deep(h1),

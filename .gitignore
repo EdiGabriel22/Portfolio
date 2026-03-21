@@ -24,5 +24,4 @@ logs
 !.env.example
 
 # Codex
-AGENTS.md
 .agents

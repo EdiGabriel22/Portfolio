@@ -1,14 +1,3 @@
-<script setup lang="ts">
-withDefaults(
-	defineProps<{
-		variant?: "default" | "case";
-	}>(),
-	{
-		variant: "default",
-	},
-);
-</script>
-
 <template>
 	<section v-if="variant === 'default'" class="p-4 relative">
 		<div class="py-16 relative text-center bg-primary rounded-3xl">
@@ -46,3 +35,14 @@ withDefaults(
 		</div>
 	</footer>
 </template>
+
+<script setup lang="ts">
+withDefaults(
+	defineProps<{
+		variant?: "default" | "case";
+	}>(),
+	{
+		variant: "default",
+	},
+);
+</script>

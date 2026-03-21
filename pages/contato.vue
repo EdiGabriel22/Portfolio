@@ -1,104 +1,3 @@
-<script setup lang="ts">
-import {
-	ArrowRight,
-	Beaker,
-	Github,
-	Linkedin,
-} from "lucide-vue-next";
-import { computed, reactive, ref } from "vue";
-
-	const socialLinks = [
-		{
-			name: "LINKEDIN",
-			href: "https://www.linkedin.com/in/edi-gabriel/",
-			icon: Linkedin,
-		},
-		{
-			name: "GITHUB",
-			href: "https://github.com/EdiGabriel22",
-			icon: Github,
-		},
-		{
-			name: "BEHANCE",
-			href: "https://www.behance.net/edigabriel_",
-			icon: Beaker,
-		}
-	];
-
-	const formData = reactive({
-		name: "",
-		email: "",
-		message: "",
-	});
-
-	const contactEmail = "edigabrielcontato@gmail.com";
-	const isSubmitting = ref(false);
-	const submitStatus = ref<"idle" | "opening" | "error">("idle");
-	const siteBaseUrl = useSiteBaseUrl();
-
-	useSeoMeta({
-		title: "Contato",
-		description:
-			"Entre em contato com Edi Gabriel para projetos de Product Design, UI/UX e desenvolvimento front-end.",
-		ogTitle: "Contato",
-		ogDescription:
-			"Fale com Edi Gabriel e receba um retorno com próximos passos para seu projeto digital.",
-	});
-
-	const contactPageSchema = computed(() => ({
-		"@context": "https://schema.org",
-		"@type": "ContactPage",
-		"@id": `${siteBaseUrl.value}/contato#webpage`,
-		url: `${siteBaseUrl.value}/contato`,
-		name: "Contato",
-		mainEntity: {
-			"@type": "Person",
-			"@id": `${siteBaseUrl.value}/#person`,
-		},
-	}));
-
-	useHead(() => ({
-		script: [
-			{
-				key: "schema-contact-page",
-				type: "application/ld+json",
-				children: JSON.stringify(contactPageSchema.value),
-			},
-		],
-	}));
-
-	const handleSubmit = () => {
-		const name = formData.name.trim();
-		const email = formData.email.trim();
-		const message = formData.message.trim();
-
-		const subject = `Contato pelo Portfólio — ${name || "Novo contato"}`;
-		const body = [
-			`Nome: ${name}`,
-			`Email: ${email}`,
-			"",
-			"Mensagem:",
-			message,
-		].join("\n");
-
-		const mailtoLink = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-		isSubmitting.value = true;
-		submitStatus.value = "opening";
-
-		try {
-			window.location.href = mailtoLink;
-			formData.name = "";
-			formData.email = "";
-			formData.message = "";
-		} catch {
-			submitStatus.value = "error";
-		} finally {
-			isSubmitting.value = false;
-		}
-	};
-</script>
-
 <template>
 	<section class="min-h-screen pt-32 pb-16">
 		<div
@@ -237,3 +136,104 @@ import { computed, reactive, ref } from "vue";
 		</div>
 	</section>
 </template>
+
+<script setup lang="ts">
+import {
+	ArrowRight,
+	Beaker,
+	Github,
+	Linkedin,
+} from "lucide-vue-next";
+import { computed, reactive, ref } from "vue";
+
+	const socialLinks = [
+		{
+			name: "LINKEDIN",
+			href: "https://www.linkedin.com/in/edi-gabriel/",
+			icon: Linkedin,
+		},
+		{
+			name: "GITHUB",
+			href: "https://github.com/EdiGabriel22",
+			icon: Github,
+		},
+		{
+			name: "BEHANCE",
+			href: "https://www.behance.net/edigabriel_",
+			icon: Beaker,
+		}
+	];
+
+	const formData = reactive({
+		name: "",
+		email: "",
+		message: "",
+	});
+
+	const contactEmail = "edigabrielcontato@gmail.com";
+	const isSubmitting = ref(false);
+	const submitStatus = ref<"idle" | "opening" | "error">("idle");
+	const siteBaseUrl = useSiteBaseUrl();
+
+	useSeoMeta({
+		title: "Contato",
+		description:
+			"Entre em contato com Edi Gabriel para projetos de Product Design, UI/UX e desenvolvimento front-end.",
+		ogTitle: "Contato",
+		ogDescription:
+			"Fale com Edi Gabriel e receba um retorno com próximos passos para seu projeto digital.",
+	});
+
+	const contactPageSchema = computed(() => ({
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		"@id": `${siteBaseUrl.value}/contato#webpage`,
+		url: `${siteBaseUrl.value}/contato`,
+		name: "Contato",
+		mainEntity: {
+			"@type": "Person",
+			"@id": `${siteBaseUrl.value}/#person`,
+		},
+	}));
+
+	useHead(() => ({
+		script: [
+			{
+				key: "schema-contact-page",
+				type: "application/ld+json",
+				children: JSON.stringify(contactPageSchema.value),
+			},
+		],
+	}));
+
+	const handleSubmit = () => {
+		const name = formData.name.trim();
+		const email = formData.email.trim();
+		const message = formData.message.trim();
+
+		const subject = `Contato pelo Portfólio — ${name || "Novo contato"}`;
+		const body = [
+			`Nome: ${name}`,
+			`Email: ${email}`,
+			"",
+			"Mensagem:",
+			message,
+		].join("\n");
+
+		const mailtoLink = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+		isSubmitting.value = true;
+		submitStatus.value = "opening";
+
+		try {
+			window.location.href = mailtoLink;
+			formData.name = "";
+			formData.email = "";
+			formData.message = "";
+		} catch {
+			submitStatus.value = "error";
+		} finally {
+			isSubmitting.value = false;
+		}
+	};
+</script>

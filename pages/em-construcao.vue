@@ -1,3 +1,7 @@
+<template>
+	<UnderConstruction />
+</template>
+
 <script setup lang="ts">
 import UnderConstruction from "~/components/common/UnderConstruction.vue";
 
@@ -7,7 +11,3 @@ useSeoMeta({
 	robots: "noindex,nofollow",
 });
 </script>
-
-<template>
-	<UnderConstruction />
-</template>

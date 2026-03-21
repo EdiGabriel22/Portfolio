@@ -1,22 +1,3 @@
-<script setup lang="ts">
-import { Button } from "~/components/ui/button";
-import { motion } from "motion-v";
-
-withDefaults(
-	defineProps<{
-		kicker?: string;
-		title?: string;
-		description?: string;
-	}>(),
-	{
-		kicker: "em construção",
-		title: "Ainda tô montando essa parte",
-		description:
-			"Prometo que não é desculpa: é backlog. Enquanto isso, você pode voltar pro início ou me chamar no contato.",
-	}
-);
-</script>
-
 <template>
 	<section
 		class="relative m-4 flex h-[calc(100vh-32px)] flex-col items-center justify-center gap-4 rounded-4xl border-4 border-primary-900 bg-primary text-center"
@@ -66,3 +47,22 @@ withDefaults(
 		/>
 	</section>
 </template>
+
+<script setup lang="ts">
+import { Button } from "~/components/ui/button";
+import { motion } from "motion-v";
+
+withDefaults(
+	defineProps<{
+		kicker?: string;
+		title?: string;
+		description?: string;
+	}>(),
+	{
+		kicker: "em construção",
+		title: "Ainda tô montando essa parte",
+		description:
+			"Prometo que não é desculpa: é backlog. Enquanto isso, você pode voltar pro início ou me chamar no contato.",
+	}
+);
+</script>
